@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import React from 'react'
+import { usePathname } from "next/navigation";
 
-const page = () => {
-  return (
-    <div>trade page</div>
-  )
-}
+const Page = () => {
+  const x = usePathname();
+  console.log(x);
+  return <div>trade page THIS IS THE PATH:</div>;
+};
 
-export default page
+export default Page;

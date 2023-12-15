@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
 
-## Getting Started
+in order to become a successful trader you must to review your trades
+this is how to learn from failure and remeber the lessons and rules 
 
-First, run the development server:
+## Technologies & Documentation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+for the framework i using next.js
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://nextjs.org/docs
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ui liabry of my choise is Chakra that also use framer-motion
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+https://chakra-ui.com/
+https://www.framer.com/motion/
 
-## Learn More
+for custom components i using Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+https://tailwindcss.com/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+icons liabry:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://react-icons.github.io/react-icons/search/

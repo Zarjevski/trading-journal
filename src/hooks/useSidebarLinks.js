@@ -2,7 +2,7 @@ import { usePathname } from "next/navigation";
 import { IoHomeOutline, IoAnalyticsOutline, IoSettingsOutline, IoFileTrayFullOutline } from "react-icons/io5";
 
 const useSidebarLinks = () => {
-  const { pathname } = usePathname();
+  const  pathname  = usePathname();
   const links = [
     {
       title: "Home",

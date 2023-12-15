@@ -1,9 +1,13 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+import RulesList from "@/components/RulesList";
+
+const Page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <section className="w-full grid grid-cols-4 grid-rows-2 p-4">
+      <RulesList />
+    </section>
+  );
+};
 
-export default page
+export default Page;
