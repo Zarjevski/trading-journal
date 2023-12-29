@@ -4,7 +4,9 @@ import React from 'react'
 
 const error = () => {
   return (
-    <div>error</div>
+    <section className='w-full h-full flex justify-center items-center'>
+      
+    </section>
   )
 }
 

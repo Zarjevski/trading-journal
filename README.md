@@ -14,6 +14,10 @@ ui liabry of my choise is Chakra that also use framer-motion
 https://chakra-ui.com/
 https://www.framer.com/motion/
 
+for the charts this project using chart.js
+
+https://react-chartjs-2.js.org/
+
 for custom components i using Tailwind CSS
 
 https://tailwindcss.com/

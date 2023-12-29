@@ -2,13 +2,13 @@
 
 import React from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main>
+    <main className="relative">
       <Navbar />
-      <section className="flex">
+      <section className="flex relative">
         <Sidebar />
         {children}
       </section>

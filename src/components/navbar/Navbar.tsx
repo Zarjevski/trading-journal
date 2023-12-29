@@ -1,25 +1,17 @@
 import React from "react";
 import { useColorMode } from "@chakra-ui/react";
 import SwitchSkin from "./SwitchSkin";
-import LogoWhite from "../assets/logo-white.png";
-import LogoBlack from "../assets/logo-black.png";
-import Image from "next/image";
+import Logo from "../common/Logo";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <nav
-      className={`flex justify-between items-center border-b h-[6vh] p-4 ${
+      className={`sticky flex justify-between items-center border-b h-[8vh] p-4  ${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }`}
     >
-      <Image
-        src={colorMode === "light" ? LogoBlack : LogoWhite}
-        width={150}
-        height={50}
-        alt="logo"
-        className="cursor-pointer"
-      />
+      <Logo width={200} height={100} colorMode={colorMode} />
       <SwitchSkin mode={colorMode} toggle={toggleColorMode} />
     </nav>
   );

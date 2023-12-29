@@ -18,6 +18,7 @@ const SidebarUL = ({
         {
           return (
             <Link
+              key={index}
               href={link.path}
               className={`p-2 w-full flex items-center cursor-pointer h-12 
               ${!isOpen ? "justify-center" : null}

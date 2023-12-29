@@ -1,11 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 const Page = () => {
-  const x = usePathname();
-  console.log(x);
-  return <div>trade page THIS IS THE PATH:</div>;
+  return <section className="grid grid-cols-2 grid-rows-2 gap-8 p-8 w-full">
+    <div className="border w-1/2"></div>
+    <div className="border w-1/2"></div>
+    <div className="w-full"></div>
+  </section>;
 };
 
 export default Page;

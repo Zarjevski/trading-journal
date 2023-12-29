@@ -13,7 +13,7 @@ const UserDetails = ({
 }) => {
   return (
     <div className="w-full border-b">
-      <div className="h-10 border-b flex w-full justify-end">
+      <div className="h-12 border-b flex w-full justify-end">
         <div
           className="w-12 flex justify-center items-center cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
