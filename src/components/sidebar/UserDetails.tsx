@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { IoChevronForwardOutline, IoChevronBackOutline } from "react-icons/io5";
+import Placeholder from '@/assets/placeholder.jpg'
 
 const UserDetails = ({
   isOpen,
@@ -27,7 +28,7 @@ const UserDetails = ({
       </div>
       <div className="w-full flex justify-center my-6">
         <Image
-          src=""
+          src={Placeholder}
           width={80}
           height={80}
           alt="user"

@@ -6,6 +6,7 @@ import { IoAdd } from "react-icons/io5";
 import WLratio from "@/components/home/WLratio";
 import RoadTM from "@/components/home/RoadTM";
 import { motion } from "framer-motion";
+import RecentTrades from "@/components/forms/RecentTrades";
 
 const Page = () => {
   const { colorMode } = useColorMode();
@@ -21,25 +22,7 @@ const Page = () => {
       <WLratio colorMode={colorMode} />
       <RoadTM colorMode={colorMode} />
       <RulesList />
-      <div
-        className={`rounded col-start-1 col-span-3 w-full h-full border p-4 ${
-          colorMode === "light"
-            ? "text-black bg-white"
-            : "bg-gray-800 text-white"
-        }`}
-      >
-        <header className="p-2 capitalize border-b flex justify-between">
-          <h1>recent trades</h1>
-          <button
-            className={`flex items-center capitalize px-4 rounded ${
-              colorMode === "light" ? "hover:bg-gray-200" : "hover:bg-gray-700"
-            }`}
-          >
-            <IoAdd className="mr-1" />
-            new
-          </button>
-        </header>
-      </div>
+      <RecentTrades colorMode={colorMode}/>
     </motion.div>
   );
 };
