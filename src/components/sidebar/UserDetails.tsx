@@ -3,20 +3,26 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { IoChevronForwardOutline, IoChevronBackOutline } from "react-icons/io5";
-import Placeholder from '@/assets/placeholder.jpg'
+import Placeholder from "@/assets/placeholder.jpg";
 
 const UserDetails = ({
   isOpen,
   setIsOpen,
+  colorMode,
 }: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  colorMode: string;
 }) => {
   return (
     <div className="w-full border-b">
       <div className="h-12 border-b flex w-full justify-end">
-        <div
-          className="w-12 flex justify-center items-center cursor-pointer"
+        <button
+          className={`${
+            isOpen
+              ? "w-full flex justify-end p-4 items-center"
+              : "w-full flex items-center justify-center"
+          } ${colorMode === 'light' ? "hover:bg-gray-200" : "hover:bg-gray-700"} cursor-pointer `}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
@@ -24,15 +30,17 @@ const UserDetails = ({
           ) : (
             <IoChevronForwardOutline className={"w-6 h-6"} />
           )}
-        </div>
+        </button>
       </div>
-      <div className="w-full flex justify-center my-6">
+      <div className="w-full flex justify-center my-6 px-2">
         <Image
           src={Placeholder}
           width={80}
           height={80}
           alt="user"
-          className="bg-gray-400 rounded-full m-1"
+          className={`${
+            colorMode === "light" ? "bg-gray-300" : "bg-white"
+          } border rounded-full p-1`}
         />
       </div>
       {isOpen ? (

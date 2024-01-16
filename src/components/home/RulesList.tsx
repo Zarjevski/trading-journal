@@ -16,16 +16,16 @@ const RulesList = () => {
       className={`${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }
-      p-4 rounded col-start-4 row-span-2 border`}
+      p-4 rounded col-start-4 row-span-2 border shadow`}
     >
-      <header className="w-full flex justify-between border-b p-2">
-        <h1 className="font-bold">My Rules</h1>
+      <header className="w-full flex justify-between border-b p-3">
+        <h1 className="font-bold text-xl">My Rules</h1>
         <button
-          className={`flex items-center capitalize px-4 rounded ${
-            colorMode === "light" ? "hover:bg-gray-200" : "hover:bg-gray-700"
+          className={`flex items-center capitalize px-2 rounded ${
+            colorMode === "light" ? "bg-gray-900 hover:bg-gray-700 text-white" : "hover:bg-gray-700"
           }`}
         >
-          <IoAdd className="mr-1" />
+          <IoAdd  />
           new
         </button>
       </header>

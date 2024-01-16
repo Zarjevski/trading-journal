@@ -2,11 +2,10 @@
 
 import RulesList from "@/components/home/RulesList";
 import { useColorMode } from "@chakra-ui/react";
-import { IoAdd } from "react-icons/io5";
 import WLratio from "@/components/home/WLratio";
 import RoadTM from "@/components/home/RoadTM";
+import TradesTable from "@/components/trades/TradesTable"
 import { motion } from "framer-motion";
-import RecentTrades from "@/components/forms/RecentTrades";
 
 const Page = () => {
   const { colorMode } = useColorMode();
@@ -22,7 +21,7 @@ const Page = () => {
       <WLratio colorMode={colorMode} />
       <RoadTM colorMode={colorMode} />
       <RulesList />
-      <RecentTrades colorMode={colorMode}/>
+      <TradesTable colorMode={colorMode} title={"Recent Trades"}/>
     </motion.div>
   );
 };

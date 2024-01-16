@@ -94,6 +94,7 @@ model Trade {
   date      DateTime
   status    String
   size      Int
+  reason    String
 
   @@map("trades")
 }

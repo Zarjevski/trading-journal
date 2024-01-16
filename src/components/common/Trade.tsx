@@ -10,6 +10,7 @@ interface TradeProps {
   date: string;
   position: string;
   status: string;
+  colorMode: string
 }
 
 const Trade: React.FC<TradeProps> = ({
@@ -20,13 +21,14 @@ const Trade: React.FC<TradeProps> = ({
   date,
   position,
   status,
+  colorMode
 }) => {
   const positionColor = position === "long" ? "bg-green-500" : "bg-red-500";
   const statusColor = status === "Win" ? "bg-green-500" : "bg-red-500";
   const router = useRouter();
   return (
     <tr
-      className="h-12 text-center hover:bg-gray-700 cursor-pointer"
+      className={`h-12 text-center cursor-pointer ${colorMode === "light" ? "hover:bg-gray-100" : "hover:bg-gray-700"}`}
       onClick={() => router.push(`/trades/${id}`)}
     >
       <td>{symbol}</td>

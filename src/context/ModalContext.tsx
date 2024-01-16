@@ -3,9 +3,12 @@ import React, { createContext, useContext, useState } from "react";
 const ModalContext = createContext({});
 
 const ModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [Component, setComponent] = useState<any>(() => React.Fragment);
   return (
-    <ModalContext.Provider value={[isOpen, setIsOpen]}>
+    <ModalContext.Provider
+      value={{ isOpen, setIsOpen, setComponent, Component }}
+    >
       {children}
     </ModalContext.Provider>
   );
