@@ -3,6 +3,7 @@ import Image from "next/image";
 import BinanceLogo from "@/assets/binance-logo.png";
 import NinjaTraderLogo from "@/assets/ninjatrader-logo.jpg";
 import useResetModal from "@/hooks/useResetModal";
+import Button from "../common/Button";
 import { MdClose } from "react-icons/md";
 
 const exchanges = [
@@ -62,16 +63,11 @@ const ChooseExchange = ({
         })}
       </div>
       <div className="h-12 flex justify-center items-center my-4">
-        <button
-          className={` border rounded p-2 font-bold ${
-            colorMode === "light"
-              ? "bg-black text-white"
-              : "bg-white text-gray-950"
-          }`}
+        <Button
+          text="continue"
           onClick={()=> setExchange(active)}
-        >
-          continue
-        </button>
+        />
+        
       </div>
     </div>
   );

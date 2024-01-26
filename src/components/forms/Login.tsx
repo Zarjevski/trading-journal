@@ -5,15 +5,23 @@ import Input from "../common/Input";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 
-const Login = ({ changeVariant }: { changeVariant: any }) => {
+const Login = ({
+  changeVariant,
+  colorMode,
+}: {
+  changeVariant: any;
+  colorMode: string;
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <form
-      className="p-12 mt-8 h-2/4 border w-1/4 bg-white shadow "
+      className={`p-12 mt-8 h-2/4 border sm:w-1/6 lg:w-1/4 md:w-2/6 shadow ${
+        colorMode === "lght" ? "bg-white" : "bg-gray-800"
+      } `}
       onSubmit={(e: React.SyntheticEvent) => {
         e.preventDefault();
-        signIn("credentials", { email, password, redirect: false })
+        signIn("credentials", { email, password, redirect: false });
       }}
     >
       <div className="text-center mb-6">

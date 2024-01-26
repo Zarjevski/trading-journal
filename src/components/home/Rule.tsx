@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { IoPencil, IoTrashOutline } from "react-icons/io5";
 
@@ -6,7 +7,7 @@ const Rule = ({
   title,
   number,
 }: {
-  id: number;
+  id: string;
   title: string;
   number: number;
 }) => {
@@ -23,8 +24,16 @@ const Rule = ({
       </h6>
       {isHovered ? (
         <div className="flex items-center">
-          <IoPencil className={`h-4 w-4 m-2`} />
-          <IoTrashOutline className={`h-4 w-4 m-2`} />
+          <IoPencil className={`h-4 w-4 m-2 cursor-pointer`} />
+          <IoTrashOutline
+            className={`h-4 w-4 m-2 cursor-pointer`}
+            onClick={async () => {
+              const remove = await axios.delete("/api/rules/delete", {
+                data: { id },
+              });
+              location.reload()
+            }}
+          />
         </div>
       ) : null}
     </div>

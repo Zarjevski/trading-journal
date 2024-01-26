@@ -2,5 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+#spinner {
+  animation: spinner_effect 2s infinite;
+}
 
-
+@keyframes spinner_effect {
+  0% {
+    rotate: 0;
+    opacity: 100%;
+  }
+  40% {
+    rotate: 180deg;
+  }
+  80% {
+    rotate: 360deg;
+    opacity: 50%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}

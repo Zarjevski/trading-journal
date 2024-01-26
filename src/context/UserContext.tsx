@@ -4,16 +4,24 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const UserContext = createContext({});
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    id: "",
+    rules: [],
+    trades: [],
+  });
   const [isLoading, setIsLoading] = useState(true);
+
   const getUser = async () => {
     try {
       const user = await axios.get("/api/user");
-    console.log("this is context log",user);
+      const { firstName, lastName, id, rules, trades } = user.data;
+      setUser({ firstName, lastName, id, rules, trades });
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -22,7 +30,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={[user, isLoading]}>
+    <UserContext.Provider value={{ user, isLoading }}>
       {children}
     </UserContext.Provider>
   );

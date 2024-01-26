@@ -1,59 +1,55 @@
 import React from "react";
-import { IoAdd } from "react-icons/io5";
-import { GoHistory } from "react-icons/go";
+import Button from "../common/Button";
 import Trade from "@/components/common/Trade";
 import TableHeader from "./TableHeader";
 import useNewTradeForm from "@/hooks/useNewTradeForm";
-import {trades} from './dummyTrades'
-
+import { trades } from "./dummyTrades";
+import { motion } from "framer-motion";
 
 interface TradesTableProps {
   colorMode: string;
   data?: [{}];
   title: string;
+  icon?: any;
 }
 
-const TradesTable: React.FC<TradesTableProps> = ({ colorMode, title }) => {
-  const newTrade = useNewTradeForm()
+const TradesTable: React.FC<TradesTableProps> = ({ colorMode, title, icon: Icon }) => {
+  const newTrade = useNewTradeForm();
   return (
-    <div
-      className={`rounded col-start-1 col-span-3 w-full h-full border p-4 shadow ${
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 100 }}
+      transition={{ ease: "easeIn", duration: 0.5 }}
+      className={`rounded overflow-y-scroll col-start-1 col-span-3 w-full h-full border p-4 shadow ${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }`}
     >
-      <header className="p-3 capitalize border-b flex justify-between">
-        <h1 className="font-bold flex items-center text-xl">
-          <GoHistory className="w-4 h-4 mr-2" />
+      <header className="p-1 capitalize border-b flex justify-between">
+        <h1 className="font-bold flex items-center text-lg">
+          {Icon ? <Icon className="w-4 h-4 mr-2" /> : null}
           {title}
         </h1>
-        <button
-          className={`flex items-center capitalize px-2 rounded ${
-            colorMode === "light" ? "bg-gray-900 hover:bg-gray-700 text-white" : "hover:bg-gray-700"
-          }`}
-          onClick={()=> newTrade()}
-        >
-          <IoAdd  />
-          new
-        </button>
+        <Button text="new" onClick={()=> newTrade()}/>
       </header>
       {trades.length > 1 ? (
-        <table className="table-auto w-full overflow-scroll">
+        <table className="table-auto w-full">
           <TableHeader />
           <tbody>
-            {trades.map((trade, index)=> {
+            {trades.map((trade, index) => {
               return (
-                    <Trade
-                      id={index}
-                      key={index}
-                      symbol={trade.symbol}
-                      size={trade.size}
-                      position={trade.position}
-                      margin={trade.margin}
-                      status={trade.status}
-                      date={trade.date}
-                      colorMode={colorMode}
-                    />
-                  )})}
+                <Trade
+                  id={index}
+                  key={index}
+                  symbol={trade.symbol}
+                  size={trade.size}
+                  position={trade.position}
+                  margin={trade.margin}
+                  status={trade.status}
+                  date={trade.date}
+                  colorMode={colorMode}
+                />
+              );
+            })}
           </tbody>
         </table>
       ) : (
@@ -61,7 +57,7 @@ const TradesTable: React.FC<TradesTableProps> = ({ colorMode, title }) => {
           <h1 className="text-lg capitalize">no trades available</h1>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

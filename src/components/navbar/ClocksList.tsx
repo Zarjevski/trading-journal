@@ -3,8 +3,7 @@ import Clock from "./Clock";
 import showNotification from "@/hooks/useShowNotification";
 
 const ClocksList = () => {
-  Notification.requestPermission();
-  showNotification("asia market is about to open", "asia market");
+  // showNotification("asia market is about to open", "asia market");
   return (
     <div className="flex justify-between w-2/6 capitalize">
       <Clock market={"new york"} status={"open"} time={"22:30"} />

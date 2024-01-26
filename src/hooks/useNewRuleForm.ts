@@ -1,16 +1,15 @@
-import React from "react";
 import { useModalContext } from "@/context/ModalContext";
-import NewTrade from "@/components/forms/NewTrade";
+import NewRule from "@/components/forms/NewRule";
 
-const useNewTradeForm = () => {
+const useNewRuleForm = () => {
   const { setComponent, setIsOpen }: any = useModalContext();
   const setupModal = () => {
     setIsOpen(true);
     setComponent(() => {
-      return NewTrade;
+      return NewRule;
     });
   };
   return setupModal;
 };
 
-export default useNewTradeForm;
+export default useNewRuleForm;

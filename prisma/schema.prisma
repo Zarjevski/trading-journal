@@ -27,17 +27,18 @@ model User {
   rules     Rule[]
   accounts  Account[]
   sessions  Session[]
+  comments  Comment[]
 
   @@map("users")
 }
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade) 
-  userId            String  @db.ObjectId 
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String  @db.ObjectId
   type              String
   provider          String
-  providerAccountId String  
+  providerAccountId String
   refresh_token     String? @db.String
   access_token      String? @db.String
   expires_at        Int?
@@ -52,8 +53,8 @@ model Account {
 
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique 
-  userId       String   @db.ObjectId 
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -61,7 +62,7 @@ model Session {
 }
 
 model VerificationToken {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime
@@ -82,12 +83,12 @@ model Rule {
 }
 
 model Trade {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  account   Exchange @relation(fields: [accountId], references: [id])
-  accountId String   @db.ObjectId
-  trader    User     @relation(fields: [traderID], references: [id])
-  traderID  String   @db.ObjectId
-  createdAt DateTime @default(now())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  account   Exchange  @relation(fields: [accountId], references: [id])
+  accountId String    @db.ObjectId
+  trader    User      @relation(fields: [traderID], references: [id])
+  traderID  String    @db.ObjectId
+  createdAt DateTime  @default(now())
   symbol    String
   type      String
   margin    String
@@ -95,8 +96,17 @@ model Trade {
   status    String
   size      Int
   reason    String
+  comments  Comment[]
 
   @@map("trades")
+}
+
+model Comment {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  trade   Trade  @relation(fields: [tradeID], references: [id])
+  tradeID String @db.ObjectId
+  owner   User   @relation(fields: [ownerID], references: [id])
+  ownerID String @db.ObjectId
 }
 
 model Exchange {
