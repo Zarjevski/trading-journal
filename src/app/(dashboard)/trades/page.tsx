@@ -4,30 +4,7 @@ import TradesStatCard from "@/components/trades/TradesStatCard";
 import TradesTable from "@/components/trades/TradesTable";
 import { useColorMode } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FaTrophy, FaEye, FaDollarSign, FaGrimace } from "react-icons/fa";
-
-const dummyData = [
-  {
-    title: "most profit",
-    icon: <FaTrophy className="w-8 h-8" />,
-    data: "200$",
-  },
-  {
-    title: "looking for",
-    icon: <FaEye className="w-8 h-8" />,
-    data: "SHORTS",
-  },
-  {
-    title: "avarege profit",
-    icon: <FaDollarSign className="w-8 h-8" />,
-    data: "115%",
-  },
-  {
-    title: "biggest loss",
-    icon: <FaGrimace className="w-8 h-8" />,
-    data: "70$",
-  },
-];
+import useTradeData from "@/hooks/useTradeData";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -43,6 +20,7 @@ const container = {
 
 const Page = () => {
   const { colorMode } = useColorMode();
+  const data = useTradeData()
   return (
     <section className="h-full w-full p-8 py-16 px-32">
       <motion.div
@@ -51,8 +29,8 @@ const Page = () => {
         initial="hidden"
         animate="visible"
       >
-        {dummyData.map((stat, index) => {
-          const { icon, title, data } = stat;
+        {data.map((stat, index) => {
+          const { icon, title, data } = stat;    
           return (
             <TradesStatCard
               key={index}

@@ -17,7 +17,7 @@ const item = {
 };
 
 const TradesStatCard: React.FC<StatCardProps> = ({
-  icon,
+  icon: Icon,
   title,
   data,
   colorMode,
@@ -34,7 +34,7 @@ const TradesStatCard: React.FC<StatCardProps> = ({
             colorMode === "light" ? "bg-gray-100" : "bg-gray-600"
           }`}
         >
-          {icon}
+          <Icon className={"h-8 w-8"}/>
         </div>
       </div>
       <div className="h-full w-2/3 flex flex-col justify-center capitalize">

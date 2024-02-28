@@ -1,73 +1,51 @@
 import React, { Dispatch, SetStateAction } from "react";
-import Image from "next/image";
-import BinanceLogo from "@/assets/binance-logo.png";
-import NinjaTraderLogo from "@/assets/ninjatrader-logo.jpg";
 import useResetModal from "@/hooks/useResetModal";
+import Skeleton from "../common/Skeleton";
+import { useUserContext } from "@/context/UserContext";
 import Button from "../common/Button";
-import { MdClose } from "react-icons/md";
-
-const exchanges = [
-  {
-    title: "binance",
-    image: BinanceLogo,
-  },
-  {
-    title: "ninjaTrader",
-    image: NinjaTraderLogo,
-  },
-];
+import ExchangeCard from "./ExchangeCard";
+import FormHeader from "../forms/FormHeader";
 
 const ChooseExchange = ({
   colorMode,
   setExchange,
 }: {
   colorMode: string;
-  setExchange: Dispatch<SetStateAction<string>>;
+  setExchange: Dispatch<SetStateAction<any>>;
 }) => {
-  const [active, setActive] = React.useState("");
+  const [active, setActive] = React.useState({ id: "", title: "" });
   const reset = useResetModal();
+  const { isLoading, user }: any = useUserContext();
+
   return (
     <div
-      className={`w-2/6 px-6 rounded border transition-all duration-600 ease-in delay-150 ${
+      className={`w-2/6 rounded border transition-all duration-600 ease-in delay-150 ${
         colorMode === "light" ? "bg-white" : "bg-gray-800"
       }`}
     >
-      <header className="h-12 flex justify-between items-center">
-        <span></span>
-        <h1 className="font-bold text-lg">choose exchange</h1>
-        <button onClick={() => reset()}>
-          <MdClose className={"h-5 w-5"} />
-        </button>
-      </header>
+      <FormHeader title={"choose account"}/>
       <div
-        className={`h-44 w-full gap-4 flex justify-evenly my-4 font-medium capitalize`}
+        className={`h-44 px-4 w-full gap-2  flex flex-wrap overflow-y-auto justify-evenly my-4 font-medium capitalize`}
       >
-        {exchanges.map((exchange, index) => {
-          return (
-            <div
-              className={`rounded border ${
-                active === exchange.title ? "border-2 border-blue-500" : null
-              } w-2/4 flex flex-col justify-center items-center cursor-pointer`}
-              key={index}
-              onClick={() => setActive(exchange.title)}
-            >
-              <Image
-                height={50}
-                width={50}
-                src={exchange.image}
-                alt={exchange.title}
-              />
-              <h2 className="mt-1">{exchange.title}</h2>
-            </div>
-          );
-        })}
+        {isLoading
+          ? [0, 1].map((item, index) => {
+              return <Skeleton hieght={"40"} width={"80"} key={index} />;
+            })
+          : user.exchanges.map((exchange: any, index: number) => {
+              return (
+                <ExchangeCard
+                  title={exchange.exchange}
+                  image={exchange.image}
+                  key={index}
+                  id={exchange.id}
+                  active={active}
+                  setActive={setActive}
+                />
+              );
+            })}
       </div>
       <div className="h-12 flex justify-center items-center my-4">
-        <Button
-          text="continue"
-          onClick={()=> setExchange(active)}
-        />
-        
+        <Button text="continue" onClick={() => setExchange(active)} />
       </div>
     </div>
   );

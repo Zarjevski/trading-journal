@@ -2,8 +2,8 @@ import React from "react";
 import { useColorMode } from "@chakra-ui/react";
 
 interface InputProps {
-  label: string;
-  name: string;
+  label?: string;
+  name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
   placeholder?: string;
@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="w-full  ">
       <label htmlFor={name} className="my-2 font-bold capitalize">
-        {label}:
+        {label}
       </label>
       <input
         type={type}

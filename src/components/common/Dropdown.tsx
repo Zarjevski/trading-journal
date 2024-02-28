@@ -1,27 +1,41 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   MdOutlineKeyboardArrowUp,
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
+import { useColorMode } from "@chakra-ui/react";
 
 interface DropdownProps {
-  colorMode: string;
   list: string[];
-  title: string
+  title: string;
+  setState: Dispatch<SetStateAction<any>>;
+  state: any;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ colorMode, list, title }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  list,
+  title,
+  setState,
+  state,
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>("none");
+  const { colorMode } = useColorMode();
   return (
-    <div className={`h-14 m-4 flex flex-col justify-center  w-full ${isOpen ? "relative" : ""}`}>
+    <div
+      className={`h-14 m-4 flex flex-col justify-center  w-full ${
+        isOpen ? "relative" : ""
+      }`}
+    >
       <h1 className="py-2 font-bold capitalize">{title}</h1>
       <div
         className={`h-auto w-full border font-medium ${
           colorMode == "light" ? "bg-white" : "bg-gray-800"
         }`}
       >
-        <div className={`h-10 flex justify-between ${isOpen ? "border-b" : ""}`}>
+        <div
+          className={`h-10 flex justify-between ${isOpen ? "border-b" : ""}`}
+        >
           <div className="p-2 flex items-center ">{value}</div>
           <div
             className={`flex items-center justify-center p-2 cursor-pointer`}
@@ -46,6 +60,7 @@ const Dropdown: React.FC<DropdownProps> = ({ colorMode, list, title }) => {
                     onClick={() => {
                       setValue(item);
                       setIsOpen(!isOpen);
+                      setState({ ...state, [title]: item });
                     }}
                     className={`${
                       colorMode === "light"

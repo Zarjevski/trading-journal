@@ -19,9 +19,9 @@ const RulesList = () => {
       className={`${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }
-      p-1 rounded col-start-4 row-span-2 border shadow`}
+      rounded col-start-4 row-span-2 border shadow`}
     >
-      <header className="w-full flex justify-between border-b p-1">
+      <header className="w-full flex justify-between border-b py-2 px-4">
         <h1 className="font-bold text-lg">My Rules</h1>
         <Button onClick={() => newRule()} text={"new"} />
       </header>

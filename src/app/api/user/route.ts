@@ -10,19 +10,36 @@ export async function GET() {
     const currentUser = await getCurrentUser();
     const { firstName, lastName, id }: any = currentUser;
     // get all trades
-    const trades = await prisma.trade.findMany({
-      where: {
-        traderID: id,
-      },
-    });
-    // get all users rules
-    const rules = await prisma.rule.findMany({
-      where: {
-        ownerID: id,
-      },
-    });
+    try {
+      const trades = await prisma.trade.findMany({
+        where: {
+          traderID: id,
+        },
+      });
+      // get all users rules
+      const rules = await prisma.rule.findMany({
+        where: {
+          traderID: id,
+        },
+      });
+      // get all exchages
+      const exchanges = await prisma.exchange.findMany({
+        where: {
+          traderID: id,
+        },
+      });
+      return NextResponse.json({
+        firstName,
+        lastName,
+        id,
+        trades,
+        rules,
+        exchanges,
+      });
+    } catch (error) {
+      console.log(error);
+    }
     // return
-    return NextResponse.json({ firstName, lastName, id, trades, rules });
   } catch (error) {
     console.log(error);
   }

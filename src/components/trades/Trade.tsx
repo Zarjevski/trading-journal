@@ -11,6 +11,7 @@ interface TradeProps {
   position: string;
   status: string;
   colorMode: string
+  exchange: string
 }
 
 const Trade: React.FC<TradeProps> = ({
@@ -21,10 +22,11 @@ const Trade: React.FC<TradeProps> = ({
   date,
   position,
   status,
+  exchange,
   colorMode
 }) => {
   const positionColor = position === "long" ? "bg-green-500" : "bg-red-500";
-  const statusColor = status === "Win" ? "bg-green-500" : "bg-red-500";
+  const statusColor = status === "win" ? "bg-green-500" : "bg-red-500";
   const router = useRouter();
   return (
     <tr
@@ -32,7 +34,7 @@ const Trade: React.FC<TradeProps> = ({
       onClick={() => router.push(`/trades/${id}`)}
     >
       <td>{symbol}</td>
-      <td>{size}</td>
+      <td>${size}</td>
       <td className="flex items-center justify-center capitalize">
         <Badge text={position} color={positionColor} />
       </td>
@@ -41,6 +43,7 @@ const Trade: React.FC<TradeProps> = ({
         <Badge text={status} color={statusColor} />
       </td>
       <td>{date}</td>
+      <td>{exchange}</td>
     </tr>
   );
 };

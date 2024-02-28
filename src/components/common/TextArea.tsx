@@ -7,6 +7,7 @@ interface TextAreaProps {
   id?: string;
   cols: number;
   rows: number;
+  onChange?: (e: any) => void;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -15,6 +16,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   id,
   cols,
   rows,
+  onChange
 }) => {
   const { colorMode } = useColorMode();
   return (
@@ -25,6 +27,7 @@ const TextArea: React.FC<TextAreaProps> = ({
       placeholder={placeholder}
       name=""
       id=""
+      onChange={onChange}
       cols={cols}
       rows={rows}
     ></textarea>

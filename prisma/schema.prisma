@@ -74,31 +74,45 @@ model VerificationToken {
 // accounts details
 
 model Rule {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  content String
-  ownerID String @db.ObjectId
-  owner   User   @relation(fields: [ownerID], references: [id])
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  content  String
+  traderID String @db.ObjectId
+  trader   User   @relation(fields: [traderID], references: [id])
 
   @@map("rules")
 }
 
 model Trade {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  account   Exchange  @relation(fields: [accountId], references: [id])
-  accountId String    @db.ObjectId
-  trader    User      @relation(fields: [traderID], references: [id])
-  traderID  String    @db.ObjectId
-  createdAt DateTime  @default(now())
-  symbol    String
-  type      String
-  margin    String
-  date      DateTime
-  status    String
-  size      Int
-  reason    String
-  comments  Comment[]
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  exchangeID   String    @db.ObjectId
+  traderID     String    @db.ObjectId
+  exchange     Exchange  @relation(fields: [exchangeID], references: [id])
+  trader       User      @relation(fields: [traderID], references: [id])
+  exchangeName String
+  createdAt    DateTime  @default(now())
+  symbol       String
+  position     String
+  margin       String
+  date         DateTime  @db.Date
+  status       String
+  size         Int
+  reason       String
+  result       Int
+  comments     Comment[]
 
   @@map("trades")
+}
+
+model Exchange {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  trader       User    @relation(fields: [traderID], references: [id])
+  traderID     String  @db.ObjectId
+  trades       Trade[]
+  balance      Int
+  exchangeName String
+  image        String
+
+  @@map("exchange")
 }
 
 model Comment {
@@ -107,15 +121,4 @@ model Comment {
   tradeID String @db.ObjectId
   owner   User   @relation(fields: [ownerID], references: [id])
   ownerID String @db.ObjectId
-}
-
-model Exchange {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  owner    User    @relation(fields: [ownerID], references: [id])
-  ownerID  String  @db.ObjectId
-  trades   Trade[]
-  balance  Int
-  exchange String
-
-  @@map("exchange")
 }

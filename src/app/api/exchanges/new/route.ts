@@ -6,11 +6,11 @@ const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { text } = body;
+  
+  const { exchange, image } = body;
   const { id }: any = await getCurrentUser();
-  const rule = await prisma.rule.create({
-    data: { traderID: id, content: text },
+  const newExchange = await prisma.exchange.create({
+    data: { ownerID: id, exchange, balance: 0, image },
   });
-
-  return NextResponse.json(rule);
+  return NextResponse.json(newExchange);
 }

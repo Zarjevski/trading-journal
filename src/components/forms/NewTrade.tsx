@@ -1,53 +1,56 @@
 import React, { useState } from "react";
 import ChooseExchange from "../trades/ChooseExchange";
-import useResetModal from "@/hooks/useResetModal";
+import FormHeader from "./FormHeader";
 import Dropdown from "../common/Dropdown";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import TextArea from "../common/TextArea";
 import { useColorMode } from "@chakra-ui/react";
-import { MdClose, MdAddAPhoto } from "react-icons/md";
+import { MdAddAPhoto } from "react-icons/md";
+import axios from "axios";
 
 const NewTrade = () => {
-  const [exchange, setExchange] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ exchange, size: "", margin: "" });
+  const [exchange, setExchange] = useState({ id: "", title: "" });
+  const [formData, setFormData] = useState({ size: "", margin: "", date: "", reason: "" });
   const { colorMode } = useColorMode();
-  const reset = useResetModal();
-  const onSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    try {
-    } catch (error) {}
-  };
-  if (!exchange) {
+  if (!exchange.id) {
     return <ChooseExchange colorMode={colorMode} setExchange={setExchange} />;
-  } else if (isLoading) {
-    <div>...loading</div>;
   } else {
     return (
       <form
         className={`${
           colorMode === "light" ? "bg-white" : "bg-gray-800"
-        } w-2/6 p-4 shadow rounded`}
+        } w-2/6  shadow rounded`}
+        onSubmit={async (e: React.SyntheticEvent) => {
+          setIsLoading(true);
+          try {
+            const response = axios.post("/api/trades/new", {
+              exchangeId: exchange.id,
+              exchangeName: exchange.title,
+              formData,
+            });
+          } catch (error) {
+            console.log(error);
+          } finally {
+            setIsLoading(false);
+          }
+        }}
       >
-        <header className="flex justify-between">
-          <span></span>
-          <h1 className="font-bold capitalize">add new trade</h1>
-          <button onClick={() => reset()}>
-            <MdClose />
-          </button>
-        </header>
+        <FormHeader title={"add new trade"} />
         <section>
           <div className="flex mt-8">
             <Dropdown
-              colorMode={colorMode}
               title={"symbol"}
               list={["bitcoin", "matic", "link", "arp"]}
+              setState={setFormData}
+              state={formData}
             />
             <Dropdown
-              colorMode={colorMode}
               title={"position"}
               list={["long", "short"]}
+              setState={setFormData}
+              state={formData}
             />
           </div>
           <div className="flex p-4 gap-8 justify-center items-center">
@@ -72,16 +75,24 @@ const NewTrade = () => {
           </div>
           <div className="flex">
             <Dropdown
-              colorMode={colorMode}
               title={"status"}
               list={["win", "loss", "pending"]}
+              setState={setFormData}
+              state={formData}
             />
-            <Input type={"date"} name={"date"} label={"entry"} />
+            <Input
+              type={"date"}
+              name={"date"}
+              label={"entry"}
+              onChange={(e) =>
+                setFormData({ ...formData, date: e.target.value })
+              }
+            />
           </div>
           <div className="flex p-4 gap-8">
-            <TextArea placeholder="Trade Summary" cols={30} rows={10} />
+            <TextArea placeholder="Trade Summary" cols={30} rows={10} onChange={(e)=> setFormData({...formData, reason: e.target.value})} />
             <div className="flex flex-col items-center justify-center border w-full cursor-pointer">
-              <MdAddAPhoto className={`h-12 w-12`}/>
+              <MdAddAPhoto className={`h-12 w-12`} />
               <h2 className="select-none capitalize">add picture</h2>
             </div>
           </div>

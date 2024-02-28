@@ -10,14 +10,15 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     id: "",
     rules: [],
     trades: [],
+    exchanges: [],
   });
   const [isLoading, setIsLoading] = useState(true);
 
   const getUser = async () => {
     try {
       const user = await axios.get("/api/user");
-      const { firstName, lastName, id, rules, trades } = user.data;
-      setUser({ firstName, lastName, id, rules, trades });
+      const { firstName, lastName, id, rules, trades, exchanges } = user.data;
+      setUser({ firstName, lastName, id, rules, trades, exchanges});
     } catch (error) {
       console.log(error);
     } finally {

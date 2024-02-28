@@ -25,7 +25,7 @@ const useSidebarLinks = () => {
     {
       title: "Settings",
       active: pathname === "/settings",
-      path: "/settings",
+      path: "/settings/information",
       icon: IoSettingsOutline
     },
   ];

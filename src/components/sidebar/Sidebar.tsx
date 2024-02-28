@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <aside
       className={`
-      flex flex-col justify-between sticky ${
+      flex flex-col justify-between sticky transition-all ${
         isOpen ? "w-60" : "w-16"
       } border-r h-[92vh]
       ${

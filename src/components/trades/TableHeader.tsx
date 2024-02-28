@@ -10,6 +10,7 @@ const TableHeader = () => {
         <th>margin</th>
         <th>status</th>
         <th>date</th>
+        <th>exchange</th>
       </tr>
     </thead>
   );

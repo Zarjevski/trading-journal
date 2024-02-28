@@ -8,7 +8,7 @@ interface ClockProps {
 }
 
 const Clock: React.FC<ClockProps> = ({ status, market, time }) => {
-  const color = status !== 'open' ? "bg-red-500" : "bg-green-500"
+  const color = status !== 'open' ? "bg-red-500"  : "bg-green-500"
   return (
     <div className="flex items-center justify-center font-medium">
       {market}: {time} <Badge color={color} text={status} />

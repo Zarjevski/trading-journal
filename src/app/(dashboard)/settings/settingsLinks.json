@@ -1,0 +1,14 @@
+[
+    {
+        "title": "user information",
+        "link": "/information"
+    },
+    {
+        "title": "exchanges",
+        "link": "/exchanges"
+    },
+    {
+        "title": "delete account",
+        "link": "/delete"
+    }
+]

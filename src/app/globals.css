@@ -22,3 +22,28 @@
     opacity: 0%;
   }
 }
+
+#fear-and-greed {
+  height: 120px;
+  width: 220px;
+  border-radius: 150px 150px 0 0;
+  background: linear-gradient(to right, #ff2701 ,#ece911,  #90d54c );
+  border: 1px solid black;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #434c57;
+}
+
+[data-theme='light']  ::-webkit-scrollbar-track{
+  background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(15, 15, 15);
+}

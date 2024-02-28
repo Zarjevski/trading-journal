@@ -9,23 +9,38 @@ const prisma = new PrismaClient();
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { accountId, symbol, type, margin, date, status, size, reason } =
-      body;
     const { id }: any = await getCurrentUser();
-    const rule = await prisma.trade.create({
+    const { exchangeId } = body;
+    const {
+      symbol,
+      position,
+      margin,
+      date,
+      status,
+      size,
+      reason,
+      result,
+      exchangeName,
+    } = body.formData;
+    const isoDate = new Date(`${date} 00:00 UTC`).toISOString();
+    const sizeToInt = parseInt(size);
+    const trade = await prisma.trade.create({
       data: {
         traderID: id,
-        accountId,
-        symbol,
-        type,
+        exchangeName,
+        position,
+        exchangeId,
         margin,
-        date,
+        date: isoDate,
         status,
-        size,
+        size: sizeToInt,
+        symbol,
+        result,
+        reason,
       },
     });
 
-    return NextResponse.json(rule);
+    return NextResponse.json(trade);
   } catch (error) {
     console.log(error);
   }
