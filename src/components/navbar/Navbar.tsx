@@ -7,7 +7,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <nav
-      className={`sticky shadow flex justify-between items-center border-b h-[8vh] p-4  ${
+      className={`sticky shadow md:flex lg:flex-row sm:flex-col xs:flex-col justify-between items-center border-b md:h-[8vh] p-4  ${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }`}
     >

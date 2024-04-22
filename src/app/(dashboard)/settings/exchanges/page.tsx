@@ -39,7 +39,7 @@ const Page = () => {
             user.exchanges.map((card: any, index: number) => {
               console.log(card);
 
-              const { image, exchange } = card;
+              const { image, exchangeName } = card;
               return (
                 <div
                   className={`w-[24%] h-14 border flex items-center justify-around cursor-pointer ${
@@ -54,7 +54,7 @@ const Page = () => {
                     src={image}
                     alt="exchange logo"
                   />
-                  <h1 className="font-medium">{exchange}</h1>
+                  <h1 className="font-medium">{exchangeName}</h1>
                 </div>
               );
             })

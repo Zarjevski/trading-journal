@@ -27,7 +27,7 @@ export async function GET() {
         where: {
           traderID: id,
         },
-      });
+      });      
       return NextResponse.json({
         firstName,
         lastName,

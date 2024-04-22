@@ -16,7 +16,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getUser = async () => {
     try {
-      const user = await axios.get("/api/user");
+      const user = await axios.get("/api/user");      
       const { firstName, lastName, id, rules, trades, exchanges } = user.data;
       setUser({ firstName, lastName, id, rules, trades, exchanges});
     } catch (error) {

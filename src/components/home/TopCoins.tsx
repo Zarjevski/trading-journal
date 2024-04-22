@@ -17,19 +17,22 @@ const TopCoins = () => {
   }, []);
   return (
     <div
-      className={`rounded overflow-y-scroll col-start-2 col-span-2 w-full h-full border ${
+      className={`rounded col-start-2 col-span-2 w-full h-full border overflow-hidden ${
         colorMode === "light" ? "text-black bg-white" : "bg-gray-800 text-white"
       }`}
     >
-      <header className="shadow py-2 px-4 h-14">
-        <h1 className="font-bold text-xl">Trending &#x1f525;</h1>
+      <header className="shadow py-2 px-4 h-14 flex items-center">
+        <h1 className="font-bold text-xl">Trending</h1>
       </header>
-      <div className="w-full h-full p-2">
-        {coins.map((coin: any, index) => {   
-          const todayChange = coin.item.data.price_change_percentage_24h.usd.toFixed(2)                 
+      <div className="w-full h-full p-2 overflow-y-scroll">
+        {coins.map((coin: any, index) => {
+          const todayChange =
+            coin.item.data.price_change_percentage_24h.usd.toFixed(2);
           return (
             <div
-              className="w-full h-12 border-b py-1 border-gray-200/[0.8] flex items-center justify-between gap-2 font-medium"
+              className={`w-full h-12 border-b py-1 flex items-center justify-between gap-2 font-medium ${
+                colorMode === "light" ? "border-gray-200/[0.8] " : "border-gray-700/[0.7] "
+              }`}
               key={index}
             >
               <div className="flex px-1 gap-4">
@@ -38,7 +41,13 @@ const TopCoins = () => {
               </div>
               <div className="flex pr-5 ">
                 <h4>{coin.item.data.price}</h4>
-                <h4 className={`${todayChange[0] === '-' ? "text-red-500" : "text-green-500"} ml-4`}>{todayChange}</h4>
+                <h4
+                  className={`${
+                    todayChange[0] === "-" ? "text-red-500" : "text-green-500"
+                  } ml-4`}
+                >
+                  {todayChange}
+                </h4>
               </div>
             </div>
           );

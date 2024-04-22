@@ -25,11 +25,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
+      display: false,
     },
   },
 };
@@ -41,7 +37,7 @@ export const data = {
   datasets: [
     {
       label: "Dataset 1",
-      data: [1, 2, 3, 2, 5,6,3],
+      data: [1, 2, 3, 2, 5, 6, 3],
       borderColor: "rgb(255, 99, 132)",
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
@@ -50,11 +46,18 @@ export const data = {
 
 const AccountGrow = ({ colorMode }: { colorMode: string }) => {
   return (
-    <Line
-      options={options}
-      data={data}
-      className={`${colorMode === "dark" ? "bg-gray-800" : "bg-white text-white" } rounded shadow border p-2`}
-    />
+    <div
+      className={`${
+        colorMode === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
+      } rounded shadow border w-fit h-full`}
+    >
+      <header className="p-4 border-b">
+        <h2 className="font-bold text-xl">Account Growth</h2>
+      </header>
+      <div className="p-8 h-full w-full  ">
+        <Line options={options} data={data} className="w-full h-[80%]" />
+      </div>
+    </div>
   );
 };
 

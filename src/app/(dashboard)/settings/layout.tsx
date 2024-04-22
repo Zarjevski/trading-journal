@@ -6,6 +6,7 @@ import SettingsLinks from "@/app/(dashboard)/settings/settingsLinks.json";
 import { useRouter } from "next/navigation";
 import { motion as m } from "framer-motion";
 import { IoSettings } from "react-icons/io5";
+import { fadeIn } from "@/utils/framerEffects";
 
 const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const { colorMode } = useColorMode();
@@ -14,14 +15,17 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     <section
       className={`w-full h-[92vh] py-16 px-32 flex justify-center items-center`}
     >
-      <div
+      <m.div
         className={`w-4/6 flex h-full border shadow ${
           colorMode === "light" ? "bg-white" : "bg-gray-800"
         }`}
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
+        transition={fadeIn.transition}
       >
         <div className="max-w-1/4 min-w-1/4 w-1/4 h-full border-r p-4 flex flex-col justify-between">
           <div className="flex items-center flex-col justify-center">
-            <IoSettings className="h-16 w-16"/>
+            <IoSettings className="h-16 w-16" />
             <h1 className="font-bold text-2xl">Settings</h1>
           </div>
           <ul className="w-full flex flex-col justify-center items-center">
@@ -43,14 +47,8 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
           </ul>
           <span className="h-1/3"></span>
         </div>
-        <m.div
-          className="w-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          {children}
-        </m.div>
-      </div>
+        <div className="w-full">{children}</div>
+      </m.div>
     </section>
   );
 };

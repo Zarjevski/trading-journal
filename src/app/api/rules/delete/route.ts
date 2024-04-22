@@ -10,12 +10,16 @@ export async function DELETE(request: Request) {
     const currentUser = await getCurrentUser();
     const { id: userID }: any = currentUser;
     const { id: RuleId }: any = body;
-    console.log(body);
-
-    const remove = await prisma.rule.delete({
-      where: { id: RuleId, ownerID: userID },
-    });
-    return NextResponse.json({ remove });
+    if (userID && RuleId) {
+      const remove = await prisma.rule.delete({
+        where: { id: RuleId, traderID: userID },
+      });
+      return NextResponse.json({ remove });
+    } else {
+      return NextResponse.json({
+        msg: "the request dont have all necessary data!",
+      });
+    }
   } catch (error) {
     console.log(error);
   }

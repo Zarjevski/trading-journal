@@ -15,7 +15,7 @@ const Logo: React.FC<LogoProps> = ({ width, height, colorMode }) => {
       width={width}
       height={height}
       alt="logo"
-      className="cursor-pointer"
+      className="cursor-pointer  xs:h-4 xs:w-16 md:h-10 md:w-72 "
     />
   );
 };
