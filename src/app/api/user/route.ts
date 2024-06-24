@@ -38,9 +38,11 @@ export async function GET() {
       });
     } catch (error) {
       console.log(error);
+      return NextResponse.json('there is an error')
     }
     // return
   } catch (error) {
     console.log(error);
+    return NextResponse.json('there is an error')
   }
 }

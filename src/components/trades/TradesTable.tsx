@@ -47,7 +47,7 @@ const TradesTable: React.FC<TradesTableProps> = ({
         <table className="table-auto w-full">
           <TableHeader />
           <tbody>
-            {trades.map((trade: any) => {
+            {trades?.map((trade: any) => {
               const splitDate = trade.date?.split("T");
               return (
                 <Trade

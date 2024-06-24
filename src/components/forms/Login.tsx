@@ -17,11 +17,19 @@ const Login = ({
   return (
     <form
       className={`p-12 mt-8 h-2/4 border sm:w-1/6 lg:w-1/4 md:w-2/6 shadow ${
-        colorMode === "lght" ? "bg-white" : "bg-gray-800"
+        colorMode === "light" ? "bg-white" : "bg-gray-800"
       } `}
-      onSubmit={(e: React.SyntheticEvent) => {
+      onSubmit={async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        signIn("credentials", { email, password, redirect: false });
+        try {
+          const response = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }}
     >
       <div className="text-center mb-6">

@@ -13,7 +13,7 @@ const RulesList = () => {
   
   const loading = data.isLoading;
   const rules = data.user.rules;
-
+  console.log(rules);
   return (
     <div
       className={`${
@@ -30,7 +30,7 @@ const RulesList = () => {
           ? [1, 2, 3, 4].map((skeleton, index) => {
               return <Skeleton key={index} width={"w-full"} hieght={"h-8"}/>
             })
-          : rules.map(
+          : rules?.map(
               (rule: { content: string; id: string }, index: number) => {
                 return (
                   <Rule

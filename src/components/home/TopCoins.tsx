@@ -28,6 +28,7 @@ const TopCoins = () => {
         {coins.map((coin: any, index) => {
           const todayChange =
             coin.item.data.price_change_percentage_24h.usd.toFixed(2);
+            const price = coin.item.data.price.toFixed(5)
           return (
             <div
               className={`w-full h-12 border-b py-1 flex items-center justify-between gap-2 font-medium ${
@@ -40,13 +41,13 @@ const TopCoins = () => {
                 <h4>{coin.item.name}</h4>
               </div>
               <div className="flex pr-5 ">
-                <h4>{coin.item.data.price}</h4>
+                <h4>{price}</h4>
                 <h4
                   className={`${
                     todayChange[0] === "-" ? "text-red-500" : "text-green-500"
                   } ml-4`}
                 >
-                  {todayChange}
+                  {todayChange}%
                 </h4>
               </div>
             </div>

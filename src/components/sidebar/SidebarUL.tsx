@@ -20,7 +20,7 @@ const SidebarUL = ({
             <Link
               key={index}
               href={link.path}
-              className={`p-2 w-[90%] rounded my-1 flex items-center cursor-pointer h-12 
+              className={`p-2 w-[96%] rounded my-1 flex items-center cursor-pointer h-12 
               ${!isOpen ? "justify-center" : null}
               ${
                 active && colorMode === "light"

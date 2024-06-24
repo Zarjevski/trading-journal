@@ -1,19 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import getSession from "./getSession";
-
-const prisma = new PrismaClient()
+import { NextResponse } from "next/server";
+const prisma = new PrismaClient();
 
 const getCurrentUser = async () => {
   try {
-    const session = await getSession();    
+    const session = await getSession();
     if (!session?.user?.email) {
-      return null;
+      return NextResponse.json({ msg: "no session" });
     }
 
     const currentUser = await prisma.user.findUnique({
       where: {
-        email: session.user.email as string
-      }
+        email: session.user.email as string,
+      },
     });
 
     if (!currentUser) {
